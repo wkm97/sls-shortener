@@ -6,12 +6,9 @@ export default {
     ShortUrlTable: {
       Type: 'AWS::DynamoDB::Table',
       Properties: {
-        TableName: '${self:service}-${self:provider.stage}-shorturl',
+        TableName: '${self:provider.environment.TABLE_PREFIX}shorturl',
         AttributeDefinitions: [
           { AttributeName: 'id', AttributeType: 'S' },
-          // { AttributeName: 'fullUrl', AttributeType: 'S' },
-          // { AttributeName: 'createdAt', AttributeType: 'N' },
-          // { AttributeName: 'expiryPeriod', AttributeType: 'N' },
         ],
         KeySchema: [
           { AttributeName: 'id', KeyType: 'HASH' },

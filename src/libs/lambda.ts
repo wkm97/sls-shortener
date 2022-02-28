@@ -3,9 +3,15 @@ import middyJsonBodyParser from '@middy/http-json-body-parser';
 import * as dynamoose from 'dynamoose';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { HttpError } from 'http-errors';
+import { isLocalDevelopment } from '@configs/is-local';
 
 // Setup dynamodb configuration before constructing models.
-dynamoose.aws.ddb.local('http://localhost:8000');
+if (isLocalDevelopment) {
+  dynamoose.aws.sdk.config.update({
+    region: process.env.REGION,
+  });
+  dynamoose.aws.ddb.local('http://localhost:8000');
+}
 
 const errorHandler = (): middy.MiddlewareObj<APIGatewayProxyEvent, APIGatewayProxyResult> => {
   const onError: middy.MiddlewareFn<APIGatewayProxyEvent, APIGatewayProxyResult> = async (

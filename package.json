@@ -4,7 +4,10 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dynamodb:local": "docker-compose up",
+    "local:dev": "export LOCAL_DEVELOPMENT=true && sls offline start",
+    "deploy:staging": "sls deploy --stage staging"
   },
   "engines": {
     "node": ">=14.15.0"
