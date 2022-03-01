@@ -6,7 +6,9 @@ docker-compose down # Close all services
 
 ## Local Setup
 ```bash
-yarn run local
+yarn run dynamodb:clean
+yarn run dynamodb:local
+yarn run start:local
 ```
 
 ## Staging Setup

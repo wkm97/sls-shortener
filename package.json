@@ -5,8 +5,9 @@
   "main": "serverless.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dynamodb:local": "docker-compose up",
-    "local:dev": "export LOCAL_DEVELOPMENT=true && sls offline start",
+    "dynamodb:local": "docker-compose up -d && sls dynamodb migrate",
+    "dynamodb:clean": "docker-compose down && rm -rf ./.dynamodb-data",
+    "start:local": "export LOCAL_DEVELOPMENT=true && sls offline start",
     "deploy:staging": "sls deploy --stage staging"
   },
   "engines": {
