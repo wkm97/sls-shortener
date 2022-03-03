@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@modules/*": ["src/modules/*"],
+      "@shorturl/*": ["src/shorturl/*"],
       "@libs/*": ["src/libs/*"],
       "@configs/*": ["src/configs/*"]
     }

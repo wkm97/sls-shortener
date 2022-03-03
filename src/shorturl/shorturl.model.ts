@@ -1,18 +1,7 @@
+import { isValidHttpUrl } from '@libs/utils';
 import * as dynamoose from 'dynamoose';
 import { Document } from 'dynamoose/dist/Document';
 import { DateTime } from 'luxon';
-
-function isValidHttpUrl(string) {
-  let url;
-
-  try {
-    url = new URL(string);
-  } catch (_) {
-    return false;
-  }
-
-  return url.protocol === 'http:' || url.protocol === 'https:';
-}
 
 const schema = new dynamoose.Schema({
   id: {
@@ -34,7 +23,7 @@ const schema = new dynamoose.Schema({
   },
 });
 
-class ShortUrl extends Document {
+export class ShortUrlDoc extends Document {
   id: string;
 
   fullUrl: string;
@@ -44,6 +33,6 @@ class ShortUrl extends Document {
   createdAt: Date;
 }
 
-export const ShortUrlModel = dynamoose.model<ShortUrl>('shorturl', schema, {
+export const ShortUrlModel = dynamoose.model<ShortUrlDoc>('shorturl', schema, {
   prefix: process.env.TABLE_PREFIX,
 });

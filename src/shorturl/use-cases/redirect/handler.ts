@@ -1,12 +1,14 @@
 import { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { ShortUrlModel } from '@libs/models/shorturl';
+import { ShortUrlModel } from '@shorturl/shorturl.model';
+import { ShortUrlRepository } from '@shorturl/shorturl.repository';
 import * as createHttpError from 'http-errors';
 
 const redirect: ValidatedEventAPIGatewayProxyEvent<void> = async (event) => {
   const { shortUrl } = event.pathParameters;
 
-  const result = await ShortUrlModel.get(shortUrl);
+  const repo = new ShortUrlRepository(ShortUrlModel);
+  const result = await repo.getById(shortUrl);
   if (result) {
     return {
       statusCode: 302,

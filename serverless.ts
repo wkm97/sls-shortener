@@ -2,9 +2,9 @@
 import type { AWS } from '@serverless/typescript';
 import resources from '@configs/resources';
 import provider from '@configs/provider';
-import hello from '@modules/hello/function';
-import redirect from '@modules/redirect/function';
-import registerShortUrl from '@modules/register-shorturl/function';
+import hello from '@shorturl/use-cases/hello/function';
+import redirect from '@shorturl/use-cases/redirect/function';
+import registerShortUrl from '@shorturl/use-cases/register-shorturl/function';
 
 const serverlessConfiguration: AWS = {
   service: 'sls-shortener',
